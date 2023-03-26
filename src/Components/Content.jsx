@@ -157,7 +157,7 @@ const Content = () => {
     <Container style={{ paddingTop: "100px" }}>
       <LoginModal show={loginShow} onHide={() => setLoginShow(false)} />
       <Row className="" style={{ height: "40vh" }}>
-        <Link style={{ textDecoration: "none" }} to={`DetailFilm/${latestData.id}`}>
+        <Link style={{ textDecoration: "none" }} to={`DetailFilm/${latestData?.id}`}>
           <Col
             className="p-0"
             style={{
