@@ -61,6 +61,7 @@ const Content = () => {
   });
 
   const latestData = film?.slice(-1)[0];
+  console.log(latestData);
 
   useEffect(() => {
     if (transaction && film) {
@@ -156,57 +157,59 @@ const Content = () => {
     <Container style={{ paddingTop: "100px" }}>
       <LoginModal show={loginShow} onHide={() => setLoginShow(false)} />
       <Row className="" style={{ height: "40vh" }}>
-        <Col
-          className="p-0"
-          style={{
-            backgroundImage: `url(${latestData?.hero})`,
-            backgroundRepeat: "no-repeat",
-            width: "100%",
-            height: "auto",
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-          }}
-        >
-          <div
-            className="text-light p-5"
-            onClick={() => {
-              navigate(`DetailFilm/${latestData.id}`);
+        <Link style={{ textDecoration: "none" }} to={`DetailFilm/${latestData.id}`}>
+          <Col
+            className="p-0"
+            style={{
+              backgroundImage: `url(${latestData?.hero})`,
+              backgroundRepeat: "no-repeat",
+              width: "100%",
+              height: "auto",
+              backgroundSize: "cover",
+              backgroundPosition: "center",
             }}
           >
-            {latestData && (
-              <div className="font-1" style={{ color: "#A52620 ", fontSize: "48px" }}>
-                <p>
-                  {latestData?.title
-                    .split(" ")
-                    .map((item, index) => index < Math.ceil(latestData?.title.split(" ").length / 2) && item + " ")}
-                </p>
-                {latestData.title.split(" ").length > 1 && (
-                  <p style={{ marginTop: "-40px", color: "#FFFFFF" }}>
+            <div
+              className="text-light p-5"
+              // onClick={() => {
+              //   navigate(`DetailFilm/${latestData.id}`);
+              // }}
+            >
+              {latestData && (
+                <div className="font-1" style={{ color: "#A52620 ", fontSize: "48px" }}>
+                  <p>
                     {latestData?.title
                       .split(" ")
-                      .map((item, index) => index >= Math.ceil(latestData?.title.split(" ").length / 2) && item + " ")}
+                      .map((item, index) => index < Math.ceil(latestData?.title.split(" ").length / 2) && item + " ")}
                   </p>
+                  {latestData.title.split(" ").length > 1 && (
+                    <p style={{ marginTop: "-40px", color: "#FFFFFF" }}>
+                      {latestData?.title
+                        .split(" ")
+                        .map((item, index) => index >= Math.ceil(latestData?.title.split(" ").length / 2) && item + " ")}
+                    </p>
+                  )}
+                </div>
+              )}
+              <div className="font-bold text-[1.2rem]">
+                <p className="fs-5 font-1">Action</p>
+                <p className="fs-5 font-1" style={{ color: "#CD2E71" }}>
+                  {formatter.format(latestData?.price)}
+                </p>
+              </div>
+              <article className="w-[50rem] text-white leading-[2rem]">{latestData?.description}</article>
+              <div className="mt-3">
+                {getToken === null || state.user.role === "admin" || fon?.status === "success" ? (
+                  <div></div>
+                ) : (
+                  <Button onClick={handleBuy} style={{ backgroundColor: "#CD2E71", border: "none", fontSize: "20px" }}>
+                    Buy Now
+                  </Button>
                 )}
               </div>
-            )}
-            <div className="font-bold text-[1.2rem]">
-              <p className="fs-5 font-1">Action</p>
-              <p className="fs-5 font-1" style={{ color: "#CD2E71" }}>
-                {formatter.format(latestData?.price)}
-              </p>
             </div>
-            <article className="w-[50rem] text-white leading-[2rem]">{latestData?.description}</article>
-            <div className="mt-3">
-              {getToken === null || state.user.role === "admin" || fon?.status === "success" ? (
-                <div></div>
-              ) : (
-                <Button onClick={handleBuy} style={{ backgroundColor: "#CD2E71", border: "none", fontSize: "20px" }}>
-                  Buy Now
-                </Button>
-              )}
-            </div>
-          </div>
-        </Col>
+          </Col>
+        </Link>
       </Row>
       <Row style={{ height: "30vh", paddingTop: "100px" }}>
         <Col className="">
