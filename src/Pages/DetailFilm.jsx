@@ -168,7 +168,7 @@ const DetailFilm = () => {
                   {film?.category}
                 </h2>
               </div>
-              {film?.price == 0 ? (
+              {film?.price == 0 || state.user.role === "admin" ? (
                 <div></div>
               ) : (
                 <div>

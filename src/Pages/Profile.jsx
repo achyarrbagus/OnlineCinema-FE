@@ -55,15 +55,15 @@ const Profile = () => {
                   <div>
                     <div className="">
                       <h5 style={{ color: "#CD2E71" }}>Full Name</h5>
-                      <h5 style={{ color: "#616161" }}>{state?.user.fullname}</h5>
+                      {state.user.fullname && <h5 style={{ color: "#616161" }}>{state?.user.fullname}</h5>}
                     </div>
                     <div className="my-3">
                       <h5 style={{ color: "#CD2E71" }}>Email</h5>
-                      <h5 style={{ color: "#616161" }}>{state?.user.email}</h5>
+                      {state.user.email && <h5 style={{ color: "#616161" }}>{state?.user.email}</h5>}
                     </div>
                     <div className="my-3">
                       <h5 style={{ color: "#CD2E71" }}>Phone</h5>
-                      <h5 style={{ color: "#616161" }}>{state?.user.phone}</h5>
+                      {state.user.email && <h5 style={{ color: "#616161" }}>{state?.user.phone}</h5>}
                     </div>
                   </div>
                 </Col>
